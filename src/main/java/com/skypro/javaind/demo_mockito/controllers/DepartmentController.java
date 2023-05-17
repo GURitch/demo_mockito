@@ -1,14 +1,12 @@
-package com.skypro.javaind.demo_mockito.controller;
+package com.skypro.javaind.demo_mockito.controllers;
 
 
 import com.skypro.javaind.demo_mockito.model.Employee;
-import com.skypro.javaind.demo_mockito.service.DepartmentService;
-import jakarta.websocket.server.PathParam;
+import com.skypro.javaind.demo_mockito.services.DepartmentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/department")
@@ -20,18 +18,18 @@ public class DepartmentController {
     }
 
     @GetMapping("/{id}/salary/sum")
-    public String sumSalaryByDepartment(@PathVariable int id) {
+    public int sumSalaryByDepartment(@PathVariable int id) {
         return departmentService.sumSalaryByDepartment(id);
     }
 
     @GetMapping("/{id}/salary/min")
-    public Optional<Employee> minSalaryByDepartment(@PathVariable int id) {
-        return departmentService.findEmployeeMinSalaryByDepartment(id);
+    public int minSalaryByDepartment(@PathVariable int id) {
+        return departmentService.minSalaryByDepartment(id);
     }
 
     @GetMapping("/{id}/salary/max")
-    public Optional<Employee> maxSalaryByDepartment(@PathVariable int id) {
-        return departmentService.findEmployeeMaxSalaryByDepartment(id);
+    public int maxSalaryByDepartment(@PathVariable int id) {
+        return departmentService.maxSalaryByDepartment(id);
     }
 
     @GetMapping("/{id}/employees")

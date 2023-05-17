@@ -1,9 +1,9 @@
-package com.skypro.javaind.demo_mockito.controller;
+package com.skypro.javaind.demo_mockito.controllers;
 
 
 
 import com.skypro.javaind.demo_mockito.model.Employee;
-import com.skypro.javaind.demo_mockito.service.EmployeeService;
+import com.skypro.javaind.demo_mockito.services.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

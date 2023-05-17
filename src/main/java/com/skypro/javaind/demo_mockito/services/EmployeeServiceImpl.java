@@ -1,9 +1,9 @@
-package com.skypro.javaind.demo_mockito.service;
+package com.skypro.javaind.demo_mockito.services;
 
 
-import com.skypro.javaind.demo_mockito.excemption.EmployeeAlreadyAddedException;
-import com.skypro.javaind.demo_mockito.excemption.EmployeeNotFoundException;
-import com.skypro.javaind.demo_mockito.excemption.InvalidInputException;
+import com.skypro.javaind.demo_mockito.excemptions.EmployeeAlreadyAddedException;
+import com.skypro.javaind.demo_mockito.excemptions.EmployeeNotFoundException;
+import com.skypro.javaind.demo_mockito.excemptions.InvalidInputException;
 import com.skypro.javaind.demo_mockito.model.Employee;
 import org.springframework.stereotype.Service;
 
@@ -65,4 +65,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new InvalidInputException("incorrect name or surname");
         }
     }
+
+
 }

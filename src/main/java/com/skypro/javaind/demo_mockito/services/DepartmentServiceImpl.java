@@ -1,13 +1,10 @@
-package com.skypro.javaind.demo_mockito.service;
+package com.skypro.javaind.demo_mockito.services;
 
 
 import com.skypro.javaind.demo_mockito.model.Employee;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -19,26 +16,32 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public String sumSalaryByDepartment(int department) {
-        return String.valueOf(employeeService.findAllEmployees().stream()
+    public int sumSalaryByDepartment(int department) {
+        return employeeService.findAllEmployees().stream()
                 .filter(employee -> employee.getDepartment()==department)
                 .mapToInt(Employee::getSalary)
-                .sum())
+                .sum()
                 ;
     }
 
     @Override
-    public Optional<Employee> findEmployeeMinSalaryByDepartment(int department) {
+    public int minSalaryByDepartment(int department) {
         return employeeService.findAllEmployees().stream()
                 .filter(employee -> employee.getDepartment()==department)
-                .min(Comparator.comparingInt(Employee::getSalary));
+                .mapToInt(Employee::getSalary)
+                .min()
+                .orElse(0)
+                ;
     }
 
     @Override
-    public Optional<Employee> findEmployeeMaxSalaryByDepartment(int department) {
+    public int maxSalaryByDepartment(int department) {
         return employeeService.findAllEmployees().stream()
                 .filter(employee -> employee.getDepartment()==department)
-                .max(Comparator.comparingInt(Employee::getSalary));
+                .mapToInt(Employee::getSalary)
+                .max()
+                .orElse(0)
+                ;
     }
 
     @Override
