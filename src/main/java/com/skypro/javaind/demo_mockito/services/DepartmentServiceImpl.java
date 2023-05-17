@@ -1,6 +1,7 @@
 package com.skypro.javaind.demo_mockito.services;
 
 
+import com.skypro.javaind.demo_mockito.excemptions.DepartmentNotFoundException;
 import com.skypro.javaind.demo_mockito.model.Employee;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public int sumSalaryByDepartment(int department) {
+        if(this.allEmployeesByDepartment(department).size() == 0){
+            throw new DepartmentNotFoundException("Сотрудников в отделе нет / отдела не существует");
+        }
         return employeeService.findAllEmployees().stream()
                 .filter(employee -> employee.getDepartment()==department)
                 .mapToInt(Employee::getSalary)
@@ -26,6 +30,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public int minSalaryByDepartment(int department) {
+        if(this.allEmployeesByDepartment(department).size() == 0){
+            throw new DepartmentNotFoundException("Сотрудников в отделе нет / отдела не существует");
+        }
         return employeeService.findAllEmployees().stream()
                 .filter(employee -> employee.getDepartment()==department)
                 .mapToInt(Employee::getSalary)
@@ -36,6 +43,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public int maxSalaryByDepartment(int department) {
+        if(this.allEmployeesByDepartment(department).size() == 0){
+            throw new DepartmentNotFoundException("Сотрудников в отделе нет / отдела не существует");
+        }
         return employeeService.findAllEmployees().stream()
                 .filter(employee -> employee.getDepartment()==department)
                 .mapToInt(Employee::getSalary)

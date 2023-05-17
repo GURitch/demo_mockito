@@ -3,6 +3,8 @@ package com.skypro.javaind.demo_mockito.controllers;
 
 import com.skypro.javaind.demo_mockito.model.Employee;
 import com.skypro.javaind.demo_mockito.services.DepartmentService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +17,11 @@ public class DepartmentController {
 
     public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<String> handleEmployeeException(RuntimeException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/{id}/salary/sum")
